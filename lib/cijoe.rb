@@ -157,8 +157,12 @@ class CIJoe
 
   def git_branch
     return @git_branch if @git_branch
-    branch = repo_config.branch.to_s
-    @git_branch = branch == '' ? "master" : branch
+    @git_branch = git_branches.first
+  end
+
+  def git_branches
+    branches = repo_config.branch.to_a
+    branches.empty? ? ["master"] : branches
   end
 
   # massage our repo

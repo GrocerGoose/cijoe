@@ -56,10 +56,18 @@ wipe out unpushed changes.
 Other Branches
 ----------------------
 
-Want joe to run against a branch other than `master`? No problem:
+Want joe to run against branches other than `master`? No problem:
 
     $ git config --add cijoe.branch deploy
+    $ git config --add cijoe.branch feature
 
+Want joe to stop running against a specific branch?
+
+    $ git config --unset cijoe.branch deploy
+
+If no branches are config'd, the default is master.  Adding other
+branches will clobber the default, so when you start to specify
+other branches, be sure to include master.
 
 Queueing
 ----------------------------------------

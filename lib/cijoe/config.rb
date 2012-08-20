@@ -15,7 +15,7 @@ class CIJoe
     end
 
     def to_s
-      git_command = "cd #{@project_path} && git config #{config_string}"
+      git_command = "cd #{@project_path} && git config --get-all #{config_string}"
       result = `#{git_command} 2>&1`.chomp
       process_status = $?
 
@@ -24,6 +24,10 @@ class CIJoe
       else
         raise "Error calling git config, is a recent version of git installed? Command: #{git_command.inspect}, Error: #{result.inspect}, Status: #{process_status.inspect}"
       end
+    end
+
+    def to_a
+      to_s.split("\n")
     end
 
     def config_string
