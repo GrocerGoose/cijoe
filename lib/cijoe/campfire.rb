@@ -25,7 +25,7 @@ class CIJoe
         :token     => campfire_config.token.to_s,
         :room      => campfire_config.room.to_s,
         :ssl       => campfire_config.ssl.to_s.strip == 'true',
-        :fail_msg_regex => (campfire_config.failmsgregex.to_s || '.*')
+        :fail_msg_regex => /#{(campfire_config.failmsgregex.to_s || '.*')}/m
       }
     end
 
@@ -68,7 +68,7 @@ Commit Message: #{build.commit.message}
 Commit Date: #{build.commit.committed_at}
 Commit Author: #{build.commit.author}
 
-#{/config[:fail_msg_regex]/m.match(build.clean_output)}
+#{config[:fail_msg_regex].match(build.clean_output)}
 EOM
     end
   end
