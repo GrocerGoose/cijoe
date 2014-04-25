@@ -1,7 +1,7 @@
 class CIJoe
   class Campfire
     attr_reader :project_path, :build
-    
+
     def initialize(project_path)
       @project_path = project_path
       if valid?
@@ -17,7 +17,7 @@ class CIJoe
         puts "\tssl = false"
       end
     end
-    
+
     def campfire_config
       campfire_config = Config.new('campfire', project_path)
       @config = {
@@ -25,7 +25,7 @@ class CIJoe
         :token     => campfire_config.token.to_s,
         :room      => campfire_config.room.to_s,
         :ssl       => campfire_config.ssl.to_s.strip == 'true',
-        :fail_msg_regex => (campfire_config.fail_msg_regex.to_s | '.*')
+        :fail_msg_regex => (campfire_config.failmsgregex.to_s | '.*')
       }
     end
 
