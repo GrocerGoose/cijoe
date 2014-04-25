@@ -79,7 +79,7 @@ Commit Message: #{build.commit.message}
 Commit Date: #{build.commit.committed_at}
 Commit Author: #{build.commit.author}
 
-#{config[:fail_msg_regex].match(build.clean_output)}
+#{campfire_config[:fail_msg_regex].match(build.clean_output)}
 EOM
     end
 
